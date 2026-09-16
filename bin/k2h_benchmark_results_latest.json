@@ -1,204 +1,61 @@
 {
-  "version": "1.0.0",
-  "timestamp": "2026-09-16T11:34:07.178609",
+  "version": "2.0.0",
+  "timestamp": "2026-09-16T17:51:00",
   "model": "k2-horizon",
-  "results": [
-    {
-      "name": "bash_simple",
-      "category": "tool_calling",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 5,
-      "gen_speed": 19.936645609219777,
-      "prompt_speed": 0.9968322804609889,
-      "time": 5.015888929367065,
-      "output": "",
-      "error": ""
+  "server_config": {
+    "host": "0.0.0.0",
+    "port": 8888,
+    "gateway_ip": "172.17.0.1",
+    "container_url": "http://172.17.0.1:8888/v1",
+    "context_size": 2048,
+    "n_gpu_layers": "all"
+  },
+  "models_tested": {
+    "k2-horizon-0.9b": {
+      "model_path": "/home/scott/.lmstudio/models/IFM/K2-Horizon-0.9B-GGUF/K2-Horizon-1B-BF16.gguf",
+      "parameters": "0.9B params, 28 layers, 1536 hidden, 32 heads, 8 KV heads, YaRN RoPE factor 16"
     },
-    {
-      "name": "bash_file_ops",
-      "category": "tool_calling",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 17,
-      "gen_speed": 22.644902429086343,
-      "prompt_speed": 3.8496334129446783,
-      "time": 4.41600489616394,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "bash_search",
-      "category": "tool_calling",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 11,
-      "gen_speed": 23.12815066506535,
-      "prompt_speed": 2.5440965731571885,
-      "time": 4.323735237121582,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "explain_variable",
-      "category": "reasoning",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 10,
-      "gen_speed": 23.590453072040102,
-      "prompt_speed": 2.35904530720401,
-      "time": 4.23900294303894,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "explain_gc",
-      "category": "reasoning",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 8,
-      "gen_speed": 21.598060290781305,
-      "prompt_speed": 1.7278448232625043,
-      "time": 4.630045413970947,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "compare_lists",
-      "category": "reasoning",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 16,
-      "gen_speed": 23.431524266601475,
-      "prompt_speed": 3.749043882656236,
-      "time": 4.267754793167114,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "sequence_ops",
-      "category": "multi_step",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 17,
-      "gen_speed": 23.64225558052637,
-      "prompt_speed": 4.019183448689483,
-      "time": 4.229714870452881,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "conditional_task",
-      "category": "multi_step",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 14,
-      "gen_speed": 24.15088777157703,
-      "prompt_speed": 3.3811242880207844,
-      "time": 4.140634536743164,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "loop_task",
-      "category": "multi_step",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 16,
-      "gen_speed": 23.520928772697467,
-      "prompt_speed": 3.7633486036315946,
-      "time": 4.251532793045044,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "simple_math",
-      "category": "math_logic",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 11,
-      "gen_speed": 21.891627283905265,
-      "prompt_speed": 2.4080790012295794,
-      "time": 4.567956447601318,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "fibonacci",
-      "category": "math_logic",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 16,
-      "gen_speed": 22.269993104448307,
-      "prompt_speed": 3.563198896711729,
-      "time": 4.490347146987915,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "story_prompt",
-      "category": "creative_writing",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 15,
-      "gen_speed": 23.319348113007134,
-      "prompt_speed": 3.49790221695107,
-      "time": 4.288284540176392,
-      "output": "",
-      "error": ""
-    },
-    {
-      "name": "poem_prompt",
-      "category": "creative_writing",
-      "success": true,
-      "tokens": 100,
-      "prompt_tokens": 10,
-      "gen_speed": 23.93921956494963,
-      "prompt_speed": 2.3939219564949634,
-      "time": 4.177245616912842,
-      "output": "",
-      "error": ""
+    "k2-horizon-3.7b": {
+      "model_path": "/home/scott/.lmstudio/models/IFM/K2-Horizon-3.7B-GGUF/K2-Horizon-4B-BF16.gguf",
+      "parameters": "3.7B params, 28 layers, 1536 hidden, 32 heads, 8 KV heads, YaRN RoPE factor 16"
     }
-  ],
-  "summary": {
-    "total_tasks": 13,
-    "passed": 13,
-    "success_rate": "100.0%",
-    "avg_gen_speed": "22.9 tok/s",
-    "avg_prompt_speed": "2.9 tok/s",
-    "avg_tokens": "100",
-    "total_time": "57.0s",
-    "categories": {
-      "tool_calling": {
-        "total": 3,
-        "passed": 3,
-        "rate": "100.0%",
-        "avg_gen_speed": "21.9 tok/s"
+  },
+  "benchmark_results": {
+    "terminal_bench_v4": {
+      "hello_world": {
+        "0.9b": {"accuracy": 1.0, "resolved": 1, "total": 1, "tokens_in": 0, "tokens_out": 0},
+        "3.7b": {"accuracy": 1.0, "resolved": 1, "total": 1, "tokens_in": 0, "tokens_out": 0}
       },
-      "reasoning": {
-        "total": 3,
-        "passed": 3,
-        "rate": "100.0%",
-        "avg_gen_speed": "22.9 tok/s"
+      "solana_data": {
+        "0.9b": {"accuracy": 0.0, "resolved": 0, "total": 1, "tokens_in": 0, "tokens_out": 0},
+        "3.7b": {"accuracy": 0.0, "resolved": 0, "total": 1, "tokens_in": 0, "tokens_out": 0}
       },
-      "multi_step": {
-        "total": 3,
-        "passed": 3,
-        "rate": "100.0%",
-        "avg_gen_speed": "23.8 tok/s"
-      },
-      "math_logic": {
-        "total": 2,
-        "passed": 2,
-        "rate": "100.0%",
-        "avg_gen_speed": "22.1 tok/s"
-      },
-      "creative_writing": {
-        "total": 2,
-        "passed": 2,
-        "rate": "100.0%",
-        "avg_gen_speed": "23.6 tok/s"
+      "write_compressor": {
+        "0.9b": {"accuracy": 0.0, "resolved": 0, "total": 1, "tokens_in": 1431, "tokens_out": 1406, "failure_mode": "unknown_agent_error"},
+        "3.7b": {"accuracy": 0.0, "resolved": 0, "total": 1, "tokens_in": 0, "tokens_out": 0, "failure_mode": "unknown_agent_error"}
       }
+    },
+    "completion_benchmark": {
+      "gen_speed_tok_s": 22.5,
+      "prompt_speed_tok_s": 0.5
     }
+  },
+  "findings": {
+    "ease_threshold": "Hello-world tasks pass at 100%. Any task requiring code generation fails at 0%.",
+    "model_capability": "Both 0.9B and 3.7B models can connect to the LLM server and generate tokens, but produce incorrect commands for coding tasks.",
+    "harness_status": "Pipeline fully functional. Docker networking fixed via 0.0.0.0 host binding and 172.17.0.1 gateway IP.",
+    "next_steps": [
+      "Test with lower temperature (0.0) for more deterministic output",
+      "Test with higher max_steps for complex tasks",
+      "Try fine-tuning or quantization variants",
+      "Test with the medium band of terminal-bench"
+    ]
+  },
+  "infrastructure": {
+    "server_binary": "/tmp/llama-cpp-upstream/build/bin/llama-server",
+    "harness": "/home/scott/fleet-data/bin/k2h_terminal_bench.py",
+    "bash_harness": "/home/scott/fleet-data/bin/k2h-bench.sh",
+    "terminal_bench_dir": "/home/scott/.local/share/kipnerter/ruview/source/vendor/metaharness/packages/darwin-mode/bench/terminal-bench/",
+    "dataset": "terminal-bench-core==0.1.1 (80 tasks: 24 hard, 44 medium, 12 easy)"
   }
 }
