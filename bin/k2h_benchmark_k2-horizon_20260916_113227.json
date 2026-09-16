@@ -1,0 +1,204 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-09-16T11:32:27.622078",
+  "model": "k2-horizon",
+  "results": [
+    {
+      "name": "bash_simple",
+      "category": "tool_calling",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 5,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "bash_file_ops",
+      "category": "tool_calling",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 17,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "bash_search",
+      "category": "tool_calling",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 11,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "explain_variable",
+      "category": "reasoning",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 10,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "explain_gc",
+      "category": "reasoning",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 8,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "compare_lists",
+      "category": "reasoning",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 16,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "sequence_ops",
+      "category": "multi_step",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 17,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "conditional_task",
+      "category": "multi_step",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 14,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "loop_task",
+      "category": "multi_step",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 16,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "simple_math",
+      "category": "math_logic",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 11,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "fibonacci",
+      "category": "math_logic",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 16,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "story_prompt",
+      "category": "creative_writing",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 15,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "name": "poem_prompt",
+      "category": "creative_writing",
+      "success": false,
+      "tokens": 0,
+      "prompt_tokens": 10,
+      "gen_speed": 0,
+      "prompt_speed": 0,
+      "time": 0,
+      "output": "",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    }
+  ],
+  "summary": {
+    "total_tasks": 13,
+    "passed": 0,
+    "success_rate": "0.0%",
+    "avg_gen_speed": "0.0 tok/s",
+    "avg_prompt_speed": "0.0 tok/s",
+    "avg_tokens": "0",
+    "total_time": "0.0s",
+    "categories": {
+      "tool_calling": {
+        "total": 3,
+        "passed": 0,
+        "rate": "0.0%",
+        "avg_gen_speed": "0.0 tok/s"
+      },
+      "reasoning": {
+        "total": 3,
+        "passed": 0,
+        "rate": "0.0%",
+        "avg_gen_speed": "0.0 tok/s"
+      },
+      "multi_step": {
+        "total": 3,
+        "passed": 0,
+        "rate": "0.0%",
+        "avg_gen_speed": "0.0 tok/s"
+      },
+      "math_logic": {
+        "total": 2,
+        "passed": 0,
+        "rate": "0.0%",
+        "avg_gen_speed": "0.0 tok/s"
+      },
+      "creative_writing": {
+        "total": 2,
+        "passed": 0,
+        "rate": "0.0%",
+        "avg_gen_speed": "0.0 tok/s"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+['asciinema rec --stdin /logs/agent.cast', 'Enter']
+['clear', 'Enter']
+["printf %s 'ZWNobyAnSGVsbG8gd29ybGQnID4gL2FwcC9kYXRhLmNjLnR4dCAmJiBnemlwIC1jIC9hcHAvZGF0YS5jYy50eHQgPiAvYXBwL2RhdGEuY2M=' | base64 -d | bash; echo __DARWIN_74529958__$?", 'Enter']
+['asciinema rec --stdin /logs/tests.cast', 'Enter']
+['clear', 'Enter']
+['bash ', '/tests/run-tests.sh', 'Enter']
+['C-d']
+['C-d']

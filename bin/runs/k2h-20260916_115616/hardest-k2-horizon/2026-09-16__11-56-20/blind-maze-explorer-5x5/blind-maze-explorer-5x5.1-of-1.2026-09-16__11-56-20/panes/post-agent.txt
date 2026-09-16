@@ -1,0 +1,94 @@
+root@e5272eddc45e:/app# printf %s 'Li9tYXplX2dhbWUuc2g=' | base64 -d | bash; echo __DARWIN_74199222__$?; tmux wait -S done
+Welcome to the Blind Maze Explorer!
+You start at position 'S'. Use 'move N/S/E/W' commands to navigate.
+You can also use batch commands like 'move N & E', 'move S & S & W'
+Type 'exit' to quit the game.
+> __DARWIN_74199222__0
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74202816__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74202816__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74204266__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74204266__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74205466__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74205466__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74206632__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74206632__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74207809__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74207809__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74208964__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74208964__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74210130__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74210130__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74211312__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74211312__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74212489__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74212489__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74213654__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74213654__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74214823__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74214823__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74216004__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74216004__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74217232__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74217232__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74218452__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74218452__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74219646__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74219646__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74220875__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74220875__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74222150__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74222150__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74223409__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74223409__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74224869__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74224869__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74226114__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74226114__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74227387__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74227387__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74228653__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74228653__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74229925__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74229925__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74231215__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74231215__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74232511__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74232511__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74233844__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74233844__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74235170__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74235170__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74236466__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74236466__127
+root@e5272eddc45e:/app# printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74237745__$?; tmux wait -S done
+bash: line 1: move: command not found
+__DARWIN_74237745__127
+root@e5272eddc45e:/app#

@@ -1,0 +1,9 @@
+{
+  "model": "k2-horizon",
+  "server": "http://127.0.0.1:8888",
+  "base_url": "http://127.0.0.1:8888/v1",
+  "results_dir": "runs/k2h-20260916_115616",
+  "timestamp": "2026-09-16T12:03:44.612699",
+  "band": "hard",
+  "n_tasks": 2
+}

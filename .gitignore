@@ -1,0 +1,7 @@
+*.gguf
+*.tar.gz
+*.tsv
+lmstudio-community/
+logs/
+*.log
+.env

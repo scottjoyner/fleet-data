@@ -1,0 +1,109 @@
+Processing tasks in duration order (longest first):
++-----+-------------------------+------------+------------+
+|   # | Task Name               | Duration   | Source     |
++=====+=========================+============+============+
+|   1 | blind-maze-explorer-5x5 | 8m 30s     | calculated |
++-----+-------------------------+------------+------------+
+|   2 | write-compressor        | 3m 30s     | calculated |
++-----+-------------------------+------------+------------+
+Total tasks: 2
+Starting harness run
+Run ID: 2026-09-16__11-56-20
+Running task: blind-maze-explorer-5x5
+Running docker compose command: docker compose -p blind-maze-explorer-5x5-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/blind-maze-explorer-5x5/docker-compose.yaml build
+Running docker compose command: docker compose -p blind-maze-explorer-5x5-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/blind-maze-explorer-5x5/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 3.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ["printf %s 'Li9tYXplX2dhbWUuc2g=' | base64 -d | bash; echo __DARWIN_74199222__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74202816__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74204266__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74205466__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74206632__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74207809__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74208964__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74210130__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74211312__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74212489__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74213654__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74214823__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74216004__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74217232__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74218452__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74219646__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74220875__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74222150__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74223409__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74224869__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74226114__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74227387__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74228653__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74229925__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74231215__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74232511__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74233844__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74235170__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74236466__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.09s.
+Sending keys: ["printf %s 'bW92ZSBO' | base64 -d | bash; echo __DARWIN_74237745__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.10s.
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 3.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 120.0
+Blocking command completed in 28.12s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p blind-maze-explorer-5x5-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/blind-maze-explorer-5x5/docker-compose.yaml down
+Running docker compose command: docker compose -p blind-maze-explorer-5x5-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/blind-maze-explorer-5x5/docker-compose.yaml down --rmi all --volumes
+Unresolved task blind-maze-explorer-5x5
+Running task: write-compressor
+Running docker compose command: docker compose -p write-compressor-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/write-compressor/docker-compose.yaml build
+Running docker compose command: docker compose -p write-compressor-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/write-compressor/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 3.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ["printf %s 'ZWNobyAnSGVsbG8gd29ybGQnID4gL2FwcC9kYXRhLmNjLnR4dCAmJiBnemlwIC1jIC9hcHAvZGF0YS5jYy50eHQgPiAvYXBwL2RhdGEuY2M=' | base64 -d | bash; echo __DARWIN_74529958__$?", '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 0.08s.
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 3.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 23.39s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p write-compressor-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/write-compressor/docker-compose.yaml down
+Running docker compose command: docker compose -p write-compressor-1-of-1-2026-09-16__11-56-20 -f /media/scott/data/cache-symlink-temp/terminal-bench/terminal-bench-core/0.1.1/write-compressor/docker-compose.yaml down --rmi all --volumes
+Unresolved task write-compressor

@@ -1,0 +1,29 @@
+{
+  "run_dir": "runs/k2h-20260916_115616/hardest-k2-horizon/2026-09-16__11-56-20",
+  "results_json": "runs/k2h-20260916_115616/hardest-k2-horizon/2026-09-16__11-56-20/results.json",
+  "accuracy_official": 0.0,
+  "n_tasks": 2,
+  "n_resolved": 0,
+  "accuracy": 0.0,
+  "total_usd": 0.0,
+  "mean_usd_per_task": 0.0,
+  "usd_per_resolved": null,
+  "rows": [
+    {
+      "task_id": "blind-maze-explorer-5x5",
+      "resolved": false,
+      "usd": 0.0,
+      "input_tokens": 61426,
+      "output_tokens": 534,
+      "steps": 30
+    },
+    {
+      "task_id": "write-compressor",
+      "resolved": false,
+      "usd": 0.0,
+      "input_tokens": 42378,
+      "output_tokens": 2833,
+      "steps": 30
+    }
+  ]
+}

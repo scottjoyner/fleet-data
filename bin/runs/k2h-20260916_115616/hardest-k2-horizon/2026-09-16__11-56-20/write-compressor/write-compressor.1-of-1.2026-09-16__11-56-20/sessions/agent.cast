@@ -1,0 +1,12 @@
+{"version": 2, "width": 160, "height": 40, "timestamp": 1789574438, "env": {"SHELL": "/bin/bash", "TERM": "tmux-256color"}}
+[0.006399, "o", "\u001b[?2004hroot@4b6affb26fe1:/app# "]
+[2.905966, "i", "clear\r"]
+[2.906333, "o", "clear\r\n\u001b[?2004l\r"]
+[2.90743, "o", "\u001b[H\u001b[J\u001b[3J"]
+[2.907604, "o", "\u001b[?2004hroot@4b6affb26fe1:/app# "]
+[91.729177, "i", "printf %s 'ZWNobyAnSGVsbG8gd29ybGQnID4gL2FwcC9kYXRhLmNjLnR4dCAmJiBnemlwIC1jIC9hcHAvZGF0YS5jYy50eHQgPiAvYXBwL2RhdGEuY2M=' | base64 -d | bash; echo __DARWIN_74529958__$?; tmux wait -S done\r"]
+[91.729725, "o", "printf %s 'ZWNobyAnSGVsbG8gd29ybGQnID4gL2FwcC9kYXRhLmNjLnR4dCAmJiBnemlwIC1jIC9hcHAvZGF0YS5jYy50eHQgPiAvYXBwL2RhdGEuY2M=' | base64 -d | bash; echo __DARWIN_74529958__$?; tmux wait -S done\r\n\u001b[?2004l\r"]
+[91.733207, "o", "__DARWIN_74529958__0\r\n"]
+[91.736555, "o", "\u001b[?2004hroot@4b6affb26fe1:/app# "]
+[173.213437, "i", "\u0004"]
+[173.213649, "o", "\u001b[?2004l\r\r\nexit\r\n"]
