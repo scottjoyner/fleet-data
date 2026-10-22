@@ -12,3 +12,10 @@ A public repository for fleet-related data or tooling. Its authoritative data mo
 ## Reproducing results
 
 Before publishing derived metrics, add exact input versions, validation commands, provenance, and date ranges. This README does not claim the data is current or approved for production routing decisions.
+
+## Repository links
+
+- [Browse the default-branch files](https://github.com/scottjoyner/fleet-data/tree/main)
+- [Review repository history](https://github.com/scottjoyner/fleet-data/commits/main)
+
+These links refer to this checkout and do not constitute build or deployment verification.
