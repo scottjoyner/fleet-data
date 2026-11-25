@@ -4,8 +4,13 @@ set -euo pipefail
 PORT=8888
 HOST="0.0.0.0"
 MODEL_PATH="/home/scott/.lmstudio/models/IFM/K2-Horizon-0.9B-GGUF/K2-Horizon-1B-BF16.gguf"
-SERVER_BIN="/tmp/llama-cpp-upstream/build/bin/llama-server"
-LOG_FILE="/tmp/k2h_server.log"
+# Durable server install. The previous path (/tmp/llama-cpp-upstream/...) was
+# deleted out from under three running llama-server processes, leaving them
+# alive on unlinked inodes and unrestartable. Everything lives under /data now.
+SERVER_ROOT="/data/lib/llama-server"
+SERVER_BIN="${SERVER_ROOT}/llama-server"
+LOG_FILE="/data/logs/k2h_server.log"
+PID_FILE="/data/run/k2h_server.pid"
 GATEWAY_IP="172.17.0.1"
 
 RED='\033[0;31m'
@@ -23,13 +28,14 @@ start_server() {
         return 0
     fi
     info "Starting K2-Horizon-0.9B server on ${HOST}:${PORT}..."
-    export LD_LIBRARY_PATH="/tmp/llama-cpp-upstream/build/bin:/home/scott/ROCmFPX/build/bin:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="${SERVER_ROOT}:${LD_LIBRARY_PATH:-}"
+    mkdir -p "$(dirname "${LOG_FILE}")" "$(dirname "${PID_FILE}")"
     nohup "${SERVER_BIN}" \
         -m "${MODEL_PATH}" \
         -c 2048 --host "${HOST}" --port "${PORT}" \
         --no-warmup --no-webui \
         > "${LOG_FILE}" 2>&1 &
-    echo $! > /tmp/k2h_server.pid
+    echo $! > "${PID_FILE}"
     info "Waiting for server to be ready..."
     for i in $(seq 1 30); do
         if curl -s "http://${HOST}:${PORT}/health" 2>/dev/null | grep -q ok; then
@@ -44,15 +50,15 @@ start_server() {
 }
 
 stop_server() {
-    if [ -f /tmp/k2h_server.pid ]; then
-        PID=$(cat /tmp/k2h_server.pid)
+    if [ -f ${PID_FILE} ]; then
+        PID=$(cat ${PID_FILE})
         if kill -0 "$PID" 2>/dev/null; then
             info "Stopping K2-Horizon server (PID: $PID)..."
             kill "$PID" 2>/dev/null || true
             sleep 2
             kill -9 "$PID" 2>/dev/null || true
         fi
-        rm -f /tmp/k2h_server.pid
+        rm -f ${PID_FILE}
     fi
     pkill -f "llama-server.*port 8888" 2>/dev/null || true
     info "Server stopped."
@@ -71,15 +77,15 @@ benchmark_completion() {
     local url="http://${HOST}:${PORT}/completion"
     info "Test 1: Simple completion..."
     curl -s -X POST "${url}" -H "Content-Type: application/json" \
-        -d '{"prompt": "The capital of France is", "n_predict": 20, "temperature": 0.1}' > /tmp/k2h_test1.json 2>/dev/null
+        -d '{"prompt": "The capital of France is", "n_predict": 20, "temperature": 0.1}' > /data/run/k2h_test1.json 2>/dev/null
     info "Simple completion done."
     info "Test 2: Reasoning..."
     curl -s -X POST "${url}" -H "Content-Type: application/json" \
-        -d '{"prompt": "Explain the difference between a compiler and interpreter, then write Python code to add two numbers.", "n_predict": 50, "temperature": 0.1}' > /tmp/k2h_test2.json 2>/dev/null
+        -d '{"prompt": "Explain the difference between a compiler and interpreter, then write Python code to add two numbers.", "n_predict": 50, "temperature": 0.1}' > /data/run/k2h_test2.json 2>/dev/null
     info "Reasoning done."
     info "Test 3: Chat API..."
     curl -s -X POST "http://${HOST}:${PORT}/v1/chat/completions" -H "Content-Type: application/json" \
-        -d '{"model": "k2-horizon", "messages": [{"role": "user", "content": "What is 2+2?"}], "max_tokens": 20, "temperature": 0.1}' > /tmp/k2h_test3.json 2>/dev/null
+        -d '{"model": "k2-horizon", "messages": [{"role": "user", "content": "What is 2+2?"}], "max_tokens": 20, "temperature": 0.1}' > /data/run/k2h_test3.json 2>/dev/null
     info "Chat API done."
     info "Benchmark complete!"
 }
@@ -88,8 +94,8 @@ benchmark_api() {
     info "Running OpenAI-compatible API benchmark..."
     local url="http://${HOST}:${PORT}/v1/chat/completions"
     curl -s -X POST "${url}" -H "Content-Type: application/json" \
-        -d '{"model": "k2-horizon", "messages": [{"role": "user", "content": "Hello, how are you?"}], "max_tokens": 50, "temperature": 0.1}' > /tmp/k2h_api_test.json 2>/dev/null
-    local tokens=$(python3 -c "import json; d=json.load(open('/tmp/k2h_api_test.json')); print(d['usage']['completion_tokens'])" 2>/dev/null || echo "N/A")
+        -d '{"model": "k2-horizon", "messages": [{"role": "user", "content": "Hello, how are you?"}], "max_tokens": 50, "temperature": 0.1}' > /data/run/k2h_api_test.json 2>/dev/null
+    local tokens=$(python3 -c "import json; d=json.load(open('/data/run/k2h_api_test.json')); print(d['usage']['completion_tokens'])" 2>/dev/null || echo "N/A")
     info "API test: ${tokens} tokens generated"
 }
 
