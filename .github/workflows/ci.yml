@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  fast-checks:
+    name: Fast offline checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Compile Python sources
+        run: python3 -m py_compile bin/k2h_benchmark.py bin/k2h_terminal_bench.py tests/test_preflight.py tests/test_mock_server_integration.py
+
+      - name: Check shell syntax
+        run: bash -n bin/k2h-bench.sh
+
+      - name: Validate JSON files
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          files = sorted(p for p in Path(".").rglob("*.json") if ".git" not in p.parts)
+          assert files, "no JSON files found"
+          for path in files:
+              with path.open(encoding="utf-8") as handle:
+                  json.load(handle)
+          print(f"validated {len(files)} JSON files")
+          PY
+
+      - name: Run offline tests
+        run: python3 -m pytest tests -q
