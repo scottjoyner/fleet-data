@@ -467,8 +467,12 @@ class TerminalBenchRunner:
         self.results_dir.mkdir(parents=True, exist_ok=True)
         if not self.check_dependencies(): return False
         reachable = check_server(self.server_url)
+        if not reachable.ok:
+            print(format_checks([reachable]), file=sys.stderr)
+            print("Preflight failed; benchmark aborted. Fix the FAIL items above.",
+                  file=sys.stderr)
+            return False
         print(format_checks([reachable]))
-        if not reachable.ok: return False
         self.download_datasets()
         self.eval_validate(skip=skip_eval)
         self.build_manifest()

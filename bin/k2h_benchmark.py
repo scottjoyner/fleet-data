@@ -490,10 +490,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 2
 
     reachable = check_server(base_url)
-    print(format_checks([reachable]))
     if not reachable.ok:
+        print(format_checks([reachable]), file=sys.stderr)
         print("Preflight failed; benchmark aborted.", file=sys.stderr)
         return 2
+    print(format_checks([reachable]))
 
     runner = K2HBenchmarkRunner(config.port, config.model_name, base_url=base_url)
     suite = runner.run_all()
