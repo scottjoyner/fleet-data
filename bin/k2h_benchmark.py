@@ -9,15 +9,229 @@ Uses the OpenAI-compatible API endpoint at http://127.0.0.1:8888/v1
 Usage:
     python3 k2h_benchmark.py [port] [model_name]
     python3 k2h_benchmark.py 8888 k2-horizon
+    python3 k2h_benchmark.py --check          # validate config, no services needed
+    python3 k2h_benchmark.py --dry-run        # show the plan, no requests/files
+
+Environment:
+    K2H_SERVER_URL   Base URL of llama-server (default: http://localhost:<port>)
+
+Exits 2 on failed preflight (with an actionable message) instead of producing
+a suite full of connection errors.
 """
 
 import json
+import os
+import sys
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime
+
+DEFAULT_PORT = 8888
+DEFAULT_MODEL_NAME = "k2-horizon"
+SERVER_URL_ENV = "K2H_SERVER_URL"
+
+USAGE = (
+    "Usage: k2h_benchmark.py [port] [model_name]\n"
+    "       k2h_benchmark.py --port N --model NAME [--url URL]\n"
+    "       k2h_benchmark.py --check | --dry-run"
+)
+
+
+@dataclass(frozen=True)
+class CheckResult:
+    """Outcome of one preflight check (no external services required)."""
+    name: str
+    ok: bool
+    message: str
+    severity: str = "error"  # "error" is fatal, "warning" is informational
+
+
+@dataclass(frozen=True)
+class CliConfig:
+    port: int = DEFAULT_PORT
+    model_name: str = DEFAULT_MODEL_NAME
+    url: Optional[str] = None
+    check: bool = False
+    dry_run: bool = False
+    help: bool = False
+
+
+def format_checks(checks: List[CheckResult]) -> str:
+    """Render preflight results consistently (pure)."""
+    lines = []
+    for check in checks:
+        tag = "OK" if check.ok else ("WARN" if check.severity == "warning" else "FAIL")
+        lines.append(f"[{tag}] {check.name}: {check.message}")
+    return "\n".join(lines)
+
+
+def fatal_checks(checks: List[CheckResult]) -> List[CheckResult]:
+    return [c for c in checks if not c.ok and c.severity != "warning"]
+
+
+def validate_port(port) -> Optional[str]:
+    """Return an error string for an invalid port, else None (pure)."""
+    if isinstance(port, bool) or not isinstance(port, int):
+        return f"port must be an integer (got {port!r})"
+    if not 1 <= port <= 65535:
+        return f"port out of range 1-65535: {port}"
+    return None
+
+
+def resolve_base_url(port: int, url: Optional[str] = None,
+                     env: Optional[Dict[str, str]] = None) -> str:
+    """Choose the server base URL: CLI > env > default (pure)."""
+    environ = os.environ if env is None else env
+    candidate = url or environ.get(SERVER_URL_ENV) or f"http://localhost:{port}"
+    return candidate.rstrip("/")
+
+
+def validate_base_url(url: str) -> Optional[str]:
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme not in ("http", "https"):
+        return f"server URL must start with http:// or https://: {url!r}"
+    if not parsed.hostname:
+        return f"server URL has no host: {url!r}"
+    return None
+
+
+def parse_args(argv: List[str]) -> CliConfig:
+    """Parse CLI arguments without touching the network or filesystem (pure)."""
+    port = None
+    model_name = None
+    url = None
+    check = dry_run = show_help = False
+    i = 0
+    while i < len(argv):
+        arg = argv[i]
+        if arg in ("-h", "--help"):
+            show_help = True
+        elif arg == "--check":
+            check = True
+        elif arg == "--dry-run":
+            dry_run = True
+        elif arg in ("--port", "--model", "--url"):
+            if i + 1 >= len(argv):
+                raise ValueError(f"{arg} requires a value")
+            i += 1
+            value = argv[i]
+            if arg == "--port":
+                try:
+                    port = int(value)
+                except ValueError:
+                    raise ValueError(f"invalid port: {value!r} (expected an integer)")
+            elif arg == "--model":
+                model_name = value
+            else:
+                url = value
+        elif arg.startswith("--port=") or arg.startswith("--model=") or arg.startswith("--url="):
+            key, value = arg.split("=", 1)
+            if key == "--port":
+                try:
+                    port = int(value)
+                except ValueError:
+                    raise ValueError(f"invalid port: {value!r} (expected an integer)")
+            elif key == "--model":
+                model_name = value
+            else:
+                url = value
+        elif arg.startswith("-"):
+            raise ValueError(f"unknown option: {arg}")
+        elif port is None:
+            try:
+                port = int(arg)
+            except ValueError:
+                raise ValueError(f"invalid port: {arg!r} (expected an integer)")
+        elif model_name is None:
+            model_name = arg
+        else:
+            raise ValueError(f"unexpected argument: {arg!r}")
+        i += 1
+    effective_port = DEFAULT_PORT if port is None else port
+    port_error = validate_port(effective_port)
+    if port_error:
+        raise ValueError(f"invalid port: {port_error}")
+    return CliConfig(
+        port=effective_port,
+        model_name=model_name or DEFAULT_MODEL_NAME,
+        url=url, check=check, dry_run=dry_run, help=show_help,
+    )
+
+
+def preflight_config(config: CliConfig, env: Optional[Dict[str, str]] = None,
+                     tasks: Optional[Dict] = None) -> List[CheckResult]:
+    """Validate configuration only; safe to call with no external services."""
+    checks: List[CheckResult] = []
+    port_error = validate_port(config.port)
+    checks.append(CheckResult("port", port_error is None,
+                              port_error or f"using port {config.port}"))
+    checks.append(CheckResult(
+        "model name", bool(config.model_name and config.model_name.strip()),
+        f"using model {config.model_name!r}" if config.model_name and config.model_name.strip()
+        else "model name is empty; pass --model NAME",
+    ))
+    base_url = resolve_base_url(config.port, config.url, env)
+    url_error = validate_base_url(base_url)
+    checks.append(CheckResult("server URL", url_error is None,
+                              url_error or f"using {base_url} (K2H_SERVER_URL / --url overrides port)"))
+    all_tasks = tasks if tasks is not None else K2H_TASKS
+    task_count = sum(len(v) for v in all_tasks.values())
+    checks.append(CheckResult(
+        "benchmark tasks", task_count > 0,
+        f"{task_count} tasks in {len(all_tasks)} categories"
+        if task_count else "no benchmark tasks configured; check K2H_TASKS",
+    ))
+    return checks
+
+
+def check_server(base_url: str, open_url=None, timeout: float = 5.0) -> CheckResult:
+    """Probe llama-server /health. `open_url` is injectable for tests."""
+    opener = urllib.request.urlopen if open_url is None else open_url
+    parsed = urllib.parse.urlparse(base_url)
+    address = parsed.netloc or base_url
+    health_url = f"{base_url.rstrip('/')}/health"
+    hint = (f"llama-server not reachable at {address}; "
+            f"start it with: bin/k2h-bench.sh start (or set K2H_SERVER_URL)")
+    try:
+        with opener(health_url, timeout=timeout) as response:
+            body = response.read().decode("utf-8", errors="replace").lower()
+    except urllib.error.HTTPError as exc:
+        # Some OpenAI-compatible servers do not expose /health. HTTP 404 still
+        # proves the server is up, so keep the original benchmark behavior.
+        exc.close()
+        if exc.code == 404:
+            return CheckResult("llama-server", True,
+                               f"reachable at {address} (no /health endpoint; continuing)")
+        return CheckResult("llama-server", False, f"{hint}: HTTP {exc.code}")
+    except Exception as exc:
+        return CheckResult("llama-server", False, f"{hint}: {exc}")
+    if "ok" not in body:
+        return CheckResult("llama-server", False,
+                           f"{hint}: /health returned an unexpected response: {body[:120]!r}")
+    return CheckResult("llama-server", True, f"reachable at {address}")
+
+
+def build_dry_run_plan(config: CliConfig, base_url: str,
+                       tasks: Optional[Dict] = None) -> Dict:
+    """Describe what a real run would do; no requests or writes (pure)."""
+    all_tasks = tasks if tasks is not None else K2H_TASKS
+    return {
+        "mode": "dry-run",
+        "model": config.model_name,
+        "server_base_url": base_url,
+        "chat_url": f"{base_url}/v1/chat/completions",
+        "completion_url": f"{base_url}/completion",
+        "categories": {cat: [task["name"] for task in items]
+                       for cat, items in all_tasks.items()},
+        "task_count": sum(len(items) for items in all_tasks.values()),
+        "output": f"k2h_benchmark_{config.model_name}_<timestamp>.json",
+        "external_services_checked": False,
+    }
+
 
 @dataclass
 class BenchmarkResult:
@@ -68,10 +282,12 @@ K2H_TASKS = {
 }
 
 class K2HBenchmarkRunner:
-    def __init__(self, port: int, model_name: str):
+    def __init__(self, port: int, model_name: str, base_url: Optional[str] = None):
         self.port = port
         self.model_name = model_name
-        self.base_url = f"http://localhost:{port}/v1"
+        # Default URLs are unchanged; base_url allows env/CLI overrides.
+        self.server_base_url = (base_url or f"http://localhost:{port}").rstrip("/")
+        self.base_url = f"{self.server_base_url}/v1"
         self.chat_url = f"{self.base_url}/chat/completions"
     
     def _call_api(self, messages: List[Dict], max_tokens: int = 100, temperature: float = 0.1) -> Dict:
@@ -105,7 +321,7 @@ class K2HBenchmarkRunner:
         }
         data = json.dumps(body).encode('utf-8')
         req = urllib.request.Request(
-            f"http://localhost:{self.port}/completion",
+            f"{self.server_base_url}/completion",
             data=data,
             headers={'Content-Type': 'application/json'}
         )
@@ -246,18 +462,51 @@ def print_results(suite: BenchmarkSuite):
     
     print(f"\n{'='*70}")
 
-if __name__ == "__main__":
-    import sys
-    
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8888
-    model_name = sys.argv[2] if len(sys.argv) > 2 else "k2-horizon"
-    
-    runner = K2HBenchmarkRunner(port, model_name)
+def main(argv: Optional[List[str]] = None) -> int:
+    argv = sys.argv[1:] if argv is None else list(argv)
+    try:
+        config = parse_args(argv)
+    except ValueError as exc:
+        print(f"[ERROR] {exc}", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
+        return 2
+    if config.help:
+        print(USAGE)
+        return 0
+
+    base_url = resolve_base_url(config.port, config.url)
+    checks = preflight_config(config)
+    if config.check or config.dry_run:
+        print("K2-Horizon benchmark preflight (no external services used)")
+        print(format_checks(checks))
+        if config.dry_run:
+            print(json.dumps(build_dry_run_plan(config, base_url), indent=2))
+        return 0 if not fatal_checks(checks) else 2
+
+    failures = fatal_checks(checks)
+    if failures:
+        print("Preflight failed; benchmark aborted:", file=sys.stderr)
+        print(format_checks(failures), file=sys.stderr)
+        return 2
+
+    reachable = check_server(base_url)
+    print(format_checks([reachable]))
+    if not reachable.ok:
+        print("Preflight failed; benchmark aborted.", file=sys.stderr)
+        return 2
+
+    runner = K2HBenchmarkRunner(config.port, config.model_name, base_url=base_url)
     suite = runner.run_all()
     print_results(suite)
-    
+
     # Save results
-    filename = f"k2h_benchmark_{model_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    filename = (f"k2h_benchmark_{config.model_name}_"
+                f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
     with open(filename, 'w') as f:
         json.dump(asdict(suite), f, indent=2)
     print(f"\nResults saved to {filename}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
